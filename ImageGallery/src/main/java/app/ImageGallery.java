@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class ImageGallery extends HttpServlet {
-	private static final long serialVersionUID = 1L;	
+	private static final long serialVersionUID = 1L;
+	
 	private String file_directory;
 
     public ImageGallery() {
@@ -20,10 +21,13 @@ public class ImageGallery extends HttpServlet {
     
     @Override
     public void init() throws ServletException {
+    	// TODO Auto-generated method stub
+    	//file_directory = getServletContext().getInitParameter("file-upload-path");
     	file_directory = getServletContext().getRealPath("/images");
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		List<String> images = new ArrayList<>();
         try {        	
            File f = new File(file_directory);           
@@ -35,12 +39,14 @@ public class ImageGallery extends HttpServlet {
         			  images.add("images" + File.separator + str);
         		  }
         	  }
-           }            
+           }
+            
            request.setAttribute("message", "Fethed images successfully");
         } catch (Exception ex) {
            request.setAttribute("message", "Images not found: " + ex);
            ex.printStackTrace();
-        }                
+        }          
+      
         request.setAttribute("images", images);
         getServletContext().getRequestDispatcher("/gallery.jsp").include(request, response);
 	}

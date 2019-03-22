@@ -16,6 +16,7 @@
     	<div class="topnav">
           <a class="active" href="index.jsp">Index</a>
           <a href="gallery.html">Gallery</a>
+          <a href="socket.jsp">Socket</a>
         </div>
         <div id="result">
             <h3><%= request.getAttribute("message") %></h3>

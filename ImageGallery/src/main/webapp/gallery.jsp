@@ -19,6 +19,7 @@
     	<div class="topnav">
           <a href=index.jsp>Index</a>
           <a class="active" href="gallery.html">Gallery</a>
+          <a href="socket.jsp">Socket</a>
         </div>
         <div class="container-fluid">  
         <% ArrayList<String> images =  (ArrayList<String>)request.getAttribute("images"); 

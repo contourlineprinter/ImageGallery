@@ -25,6 +25,12 @@
   	<description></description>
   	<servlet-class>app.ImageGallery</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>SocketServlet</servlet-name>
+  	<display-name>SocketServlet</display-name>
+  	<description></description>
+  	<servlet-class>app.SocketServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>ImageUploadServler</servlet-name>
   	<url-pattern>/image_upload</url-pattern>
@@ -33,4 +39,9 @@
   	<servlet-name>ImageGallery</servlet-name>
   	<url-pattern>/gallery.html</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SocketServlet</servlet-name>
+  	<url-pattern>/open_socket</url-pattern>
+  </servlet-mapping>
+
 </web-app>
