@@ -14,16 +14,15 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 public class ImageUploadServler extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	
+	private static final long serialVersionUID = 1L;	
 	private String file_directory;
+
     public ImageUploadServler() {
         super();
     }
     
     @Override
     public void init() throws ServletException {
-    	//file_directory = getServletContext().getInitParameter("file-upload-path");
     	file_directory = getServletContext().getRealPath("/images");
     }
 
@@ -34,8 +33,7 @@ public class ImageUploadServler extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if(ServletFileUpload.isMultipartContent(request)){
             try {
-                List<FileItem> multiparts = new ServletFileUpload(
-                                         new DiskFileItemFactory()).parseRequest(request);
+                List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
                
                 for(FileItem item : multiparts){
                     if(!item.isFormField()){

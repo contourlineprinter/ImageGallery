@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="app.Client" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,8 +33,10 @@
 </form>
 </div>
 </div>
-<% Object str = request.getAttribute("message"); if (str != null){  %>
-<h3><%= request.getAttribute("message") %> </h3>
-<% } %>
+<div id="clients">
+<% Object str = request.getAttribute("message"); if (str != null){ %>
+<h3>File path: <%=  str %> </h3>
+</div>
+<%} %>
 </body>
 </html>

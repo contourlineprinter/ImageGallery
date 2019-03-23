@@ -1,12 +1,13 @@
 package app;
 
 import java.io.*;  
-import java.net.*; 
+import java.net.*;
+import java.util.Enumeration; 
   
 public class Server  
 { 
-	 private final String IP = "230.0.0.0";
-	 private final int port = 4321;
+	 private final String IP = "192.168.0.2";
+	 private final int port = 8080;
 	 
 	 private static Server instance;
 	    

@@ -15,42 +15,47 @@ public class SocketServlet extends HttpServlet {
 
     public SocketServlet() {
         super();
-    }    
+    }
+    
     @Override
     public void init() throws ServletException {
    
-    }    
-    private void startServer() {
+    }
+    
+    private String startServer() {
+    	String msg = "";
     	try {
-    		String command = getServletContext().getRealPath(File.separator + "python") + File.separator + "server.py";
-			Process p = Runtime.getRuntime().exec("python " + command);
-			BufferedReader stdInput = new BufferedReader(new 
-	                 InputStreamReader(p.getInputStream()));
-	            BufferedReader stdError = new BufferedReader(new 
-	                 InputStreamReader(p.getErrorStream()));
-	            // read the output from the command
+    		String command = getServletContext().getRealPath("/python/script.py");
+    		System.out.println(command);
+    		ProcessBuilder processBuilder = new ProcessBuilder("python", command);
+    		Process p = processBuilder.start();
+			BufferedReader stdInput = new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+	            BufferedReader stdError = new BufferedReader(new InputStreamReader(p.getErrorStream()));
 	            System.out.println("Here is the standard output of the command:\n");
 	            String s = null;
 	            while ((s = stdInput.readLine()) != null) {
 	                System.out.println(s);
-	            }
+	                msg = s;
+	            }	            
+	            Server.getInstance().sendMessage(msg);
 	            
-	            Server.getInstance().sendMessage("File created");	            
 	            while ((s = stdError.readLine()) != null) {
 	                System.out.println(s);
 	            }
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}    	
+    	return msg;
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		startServer();
-		request.setAttribute("message", "Socket started successfully");
+		request.setAttribute("message", startServer());
 		getServletContext().getRequestDispatcher("/socket.jsp").include(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		doGet(request, response);
 	}
 
